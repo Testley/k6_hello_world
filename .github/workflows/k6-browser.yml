@@ -21,7 +21,9 @@ jobs:
        
       - name: Install k6 browser build
         run: |
-          curl -L https://github.com/grafana/k6-browser/releases/latest/download/k6-browser-linux-amd64.tar.gz | tar xz
+          curl -sL -o k6-browser-linux-amd64.tar.gz https://github.com/grafana/k6-browser/releases/latest/download/k6-browser-linux-amd64.tar.gz
+          file k6-browser-linux-amd64.tar.gz   # Optional: check file type for debugging
+          tar xzf k6-browser-linux-amd64.tar.gz
           sudo mv k6-browser-linux-amd64/k6 /usr/local/bin/k6
 
       - name: Run k6 browser test
