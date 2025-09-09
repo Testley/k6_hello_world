@@ -18,11 +18,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install k6 (with browser support)
+       
+      - name: Install k6 browser build
         run: |
-          curl -sSL https://github.com/grafana/k6/releases/download/v0.48.0/k6-v0.48.0-linux-amd64.tar.gz | tar -xz
-          sudo mv k6-v0.48.0-linux-amd64/k6 /usr/local/bin/k6
+          curl -L https://github.com/grafana/k6-browser/releases/latest/download/k6-browser-linux-amd64.tar.gz | tar xz
+          sudo mv k6-browser-linux-amd64/k6 /usr/local/bin/k6
 
       - name: Run k6 browser test
         run: k6 run browser-test.js
