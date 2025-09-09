@@ -25,4 +25,4 @@ jobs:
           sudo mv k6-v0.48.0-linux-amd64/k6 /usr/local/bin/k6
 
       - name: Run k6 browser test
-        run: k6 run browser
+        run: k6 run browser-test.js
