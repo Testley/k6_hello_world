@@ -1,0 +1,29 @@
+name: k6 Browser Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  k6-browser-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (for k6 browser support)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+       
+      - name: Install k6 browser build
+        run: |
+            curl -sSL https://github.com/grafana/k6/releases/download/v0.48.0/k6-v0.48.0-linux-amd64.tar.gz | tar -xz
+            tar xzf k6-browser-linux-amd64.tar.gz
+            sudo mv k6-browser-linux-amd64/k6 /usr/local/bin/k6
+
+      - name: Run k6 browser test
+        run: k6 run browser-test.js
